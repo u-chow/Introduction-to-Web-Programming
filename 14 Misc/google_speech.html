@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NTNU100</title>
+</head>
+
+<style>
+    #s1 {
+        color: crimson;
+    }
+    #s2 {
+        color: coral;
+    }
+    #s3 {
+        color: darksalmon;
+    }
+</style>
+
+<body>
+    <h1>Google 語音辨識測試</h1>
+    <hr>
+    <ul>
+        <li id="s1">......</li>
+        <li id="s2">......</li>
+        <li id="s3">......</li>
+    </ul>
+    <hr>
+    <p id="s0">(say something...)</p>
+    <hr>
+    <p id="all">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae autem provident a recusandae similique suscipit, dignissimos tempore. Officia rem assumenda mollitia est in ad obcaecati, quibusdam inventore sequi cupiditate consectetur.
+    </p>
+</body>
+
+<script>
+    // Google 語音辨識模組
+    let all = "";
+    let msg = "";
+    function speechRecognition() {
+        if (!("webkitSpeechRecognition" in window)) {
+            alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+        } else{
+            window._recognition = new webkitSpeechRecognition();
+            window._recognition.continuous = true;
+            window._recognition.interimResults = true;
+            window._recognition.lang = "cmn-Hant-TW";
+            window._recognition.onstart = function() {
+                window._recognition.status = true;
+                console.log("Start recognize...");
+            };
+            window._recognition.onend = function() {
+                console.log("Stop recognize");
+                if (window._recognition.status) 
+                    window._recognition.start();
+                }
+            };
+            window._recognition.onresult = function(event,result) {
+                result = {};
+                result.resultLength = event.results.length-1;
+                result.resultTranscript = event.results[result.resultLength][0].transcript;
+                if (event.results[result.resultLength].isFinal === false) {
+                    //console.log(result.resultTranscript);
+                    document.getElementById("s0").innerHTML = result.resultTranscript;
+                } else if (event.results[result.resultLength].isFinal === true) {
+                    //console.log("final");
+                    msg = result.resultTranscript;
+                    document.getElementById("s1").innerHTML = document.getElementById("s2").innerHTML;
+                    document.getElementById("s2").innerHTML = document.getElementById("s3").innerHTML;
+                    document.getElementById("s3").innerHTML = msg;
+                    all = all + msg + "<br>";
+                    document.getElementById("all").innerHTML = all;
+                    parse_command(msg);
+                }
+            };
+            window._recognition.start();
+        }
+        function parse_command(s) {
+            if (msg == "刪除") {
+                all = "";
+                msg = "";
+                document.getElementById("s1").innerHTML = "......";
+                document.getElementById("s2").innerHTML = "......";
+                document.getElementById("s3").innerHTML = "......";
+                document.getElementById("s0").innerHTML = "(say something...)";
+                document.getElementById("all").innerHTML =
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae autem provident a recusandae similique suscipit, dignissimos tempore. Officia rem assumenda mollitia est in ad obcaecati, quibusdam inventore sequi cupiditate consectetur.";
+            }
+        }
+        speechRecognition();
+    // }
+    // 注意：
+    // 這是一個古怪的 JavaScript 程式設計技巧，
+    // 在語法上最後這裡原本應該有一個 } 作為結尾，但是卻不能加上，否則辨識不能持續進行，
+    // 其實是 Rucursive 呼叫 speechRecognition 函式
+</script>
+
+</html>

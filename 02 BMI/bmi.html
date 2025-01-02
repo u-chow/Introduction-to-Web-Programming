@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>BMI</title>
+</head>
+
+<script>
+    let cm =window.prompt("cm:");
+    let kg =window.prompt("kg:");
+    let m = cm / 100;
+    let bmi = kg / (m *m);
+</script>
+
+<body>
+    <h1>BMI Calc</h1>
+    <hr>
+    <h3>身高: <script>document.write(cm);</script> cm </h3>
+    <h3>體重: <script>document.write(kg);</script> kg</h3>
+    <h3>BMI:  <span style="color: coral;"> <script>document.write(bmi);</script></span></h3>
+</body>
+</html>

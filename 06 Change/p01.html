@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+<style>
+    .jumbotron {
+        background-color:azure;
+        color:navy;
+    }
+    .custom-range {
+        width: 60%;
+    }
+</style>
+    
+<script>
+    function change() {
+        let bgc = window.prompt("BG Color?");
+        document.body.style.backgroundColor = bgc;
+        document.getElementById("here").style.color = "azure";
+    }
+    function changeBG() {
+        let r = document.getElementById("R").value;
+        let g = document.getElementById("G").value;
+        let b = document.getElementById("B").value;
+        let bgc = "RGB(" + r + "," + g + "," + b + ")";
+        document.body.style.backgroundColor = bgc;
+    }
+</script>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="text-center">Hello JS</h1>
+    </div>
+    <div class="container">
+        <h2 id="here">
+            This is my BS4 page.
+        </h2>
+        <hr>
+        <input type="button" class="btn btn-primary" value="Change" onclick="change()">
+        <input type="button" class="btn btn-warning" value="Range" onclick="changeBG()">
+        <hr>
+        <h3>RGB Values:</h3>
+        <p>
+            <input id="R" type="range" class="custom-range" min="0" max="255" value="255"> R (0-255) <br>
+            <input id="G" type="range" class="custom-range" min="0" max="255" value="255"> G (0-255) <br>
+            <input id="B" type="range" class="custom-range" min="0" max="255" value="255"> B (0-255) <br>
+        </p>
+
+    </div>
+  
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BS4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+
+<style>
+    .jumbotron {
+        background-color: antiquewhite;
+    }
+</style>
+
+<script>
+    let s = 50;
+    let token;
+    let ans;
+    let display = "???";
+    function count() {
+        s = s - 1;
+        document.getElementById("counter").innerHTML = s.toString();
+        if (s == 0) {
+            clearInterval(token);
+            document.getElementById("bomb").src = "./image/boom.png";
+        }
+    }
+    token = setInterval(count, 1000);
+
+    function start() {
+        ans = Math.floor(Math.random() * 100) + 1;
+        console.log(ans);
+    }
+    function press(d) {
+        // console.log(d);
+        if (display == "???") {
+            display = d.toString();
+        } else {
+            display = display + d.toString();
+        }
+        document.getElementById("display").innerHTML = display.toString();
+    }
+    function guess() {
+        let num = parseInt(display);
+        if (num == ans) {
+            document.getElementById("msg").innerHTML = "BinGO!";
+        } else {
+            if (ans > num) {
+                document.getElementById("msg").innerHTML = "再大一點";
+            } else {
+                document.getElementById("msg").innerHTML = "再小一點";
+            }
+        }
+        display = "???";
+        // document.getElementById("display").innerHTML = display;
+    }
+</script>
+
+<body>
+    <div class="jumbotron text-center" >
+        <h1 id="ans">Guess-100</h1>
+        <p>(1 -- 100)</p>
+    </div>
+	<div class="container">
+        <h1>counter = <span id="counter">50</span></h1>
+        <hr>
+        <p>
+            <input type="button" class="btn btn-primary" value="START" onclick="start()">
+        </p>
+        <hr>
+        <h1 id="msg" style="color:limegreen">???</h1>
+        <hr>
+        <h1 id="display" style="color:orange">???</h1>
+        <hr>
+        <p>
+            <img src="./image/y1.png" width="80" onclick="press(1)">
+            <img src="./image/y2.png" width="80" onclick="press(2)">
+            <img src="./image/y3.png" width="80" onclick="press(3)">
+            <img src="./image/mark.png" width="80" onclick="guess()"><br>
+            <img src="./image/y4.png" width="80" onclick="press(4)">
+            <img src="./image/y5.png" width="80" onclick="press(5)">
+            <img src="./image/y6.png" width="80" onclick="press(6)"><br>
+            <img src="./image/y7.png" width="80" onclick="press(7)">
+            <img src="./image/y8.png" width="80" onclick="press(8)">
+            <img src="./image/y9.png" width="80" onclick="press(9)">
+            <img src="./image/y0.png" width="80" onclick="press(0)">
+            
+        </p>
+        <hr>
+        <img id="bomb" src="./image/bomb.png" width="200">
+	</div>
+
+</body>
+
+</html>

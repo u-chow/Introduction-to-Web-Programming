@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+<style>
+    .jumbotron {
+        background-color:azure;
+        color:navy;
+    }
+    p {
+        margin: 10px;
+        padding: 10px;
+    }
+</style>
+    
+<script>
+    function change(obj) {
+        obj.style.backgroundColor = "yellow";
+    }
+    function recover(obj) {
+        obj.style.backgroundColor = "white";
+    }
+</script>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="text-center">Hello JS</h1>
+    </div>
+    <div class="container">
+    <h3>Hello JS</h3>
+    <hr>
+    <p onmouseenter="change(this)" onmouseleave="recover(this)">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex atque, consequuntur possimus at tempore veniam, est molestias reprehenderit, esse officiis neque voluptatem iusto odio laboriosam quod voluptate pariatur. In similique eum voluptates sint ipsa assumenda asperiores dolores praesentium suscipit accusamus rerum consequatur consectetur alias, veniam, cupiditate delectus iusto officia saepe.
+    </p>
+    <p onmouseenter="change(this)" onmouseleave="recover(this)">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex atque, consequuntur possimus at tempore veniam, est molestias reprehenderit, esse officiis neque voluptatem iusto odio laboriosam quod voluptate pariatur. In similique eum voluptates sint ipsa assumenda asperiores dolores praesentium suscipit accusamus rerum consequatur consectetur alias, veniam, cupiditate delectus iusto officia saepe.
+    </p>
+    <p onmouseenter="change(this)" onmouseleave="recover(this)">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex atque, consequuntur possimus at tempore veniam, est molestias reprehenderit, esse officiis neque voluptatem iusto odio laboriosam quod voluptate pariatur. In similique eum voluptates sint ipsa assumenda asperiores dolores praesentium suscipit accusamus rerum consequatur consectetur alias, veniam, cupiditate delectus iusto officia saepe.
+    </p>
+    </div>
+  
+</body>
+</html>

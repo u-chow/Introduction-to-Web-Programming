@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BS4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+
+<style>
+    .jumbotron {
+        background-color: antiquewhite;
+    }
+</style>
+
+<script>
+//Hello！你好呀！
+//歡迎光臨！
+//又看到你了，最近好嗎？
+//張開雙臂歡迎你！
+//來個抱抱吧！
+    let i = -1;
+    let msg = new Array(5);
+    msg[0] = "Hello！你好呀！";
+    msg[1] = "歡迎光臨！";
+    msg[2] = "又看到你了，最近好嗎？";
+    msg[3] = "張開雙臂歡迎你！";
+    msg[4] = "來個抱抱吧！";
+    function go() {
+        // let i = Math.floor(Math.random()*5);
+        i = i + 1;
+        if (i >= 5) { i = 0; }
+        console.log(i);
+        document.getElementById("here").innerHTML = msg[i];      
+    }
+    setInterval(go, 3000);
+</script>
+
+<body onload="go()">
+    <div class="jumbotron text-center" >
+        <h1 id="here">BootStrap 4</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nisi inventore nemo nostrum quaerat illo placeat blanditiis, natus architecto dolorum.</p>
+    </div>
+
+</body>
+
+</html>
+
+</html>

@@ -1,0 +1,47 @@
+body{
+    text-align: center;
+    background-color: black;
+}
+
+p{
+    color: white;
+    font-family: "serious1", sans-serif;
+}
+
+#title{
+    font-size: 60px;
+    font-family: "serious2b", sans-serif;
+    color: white;
+    padding-bottom: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 40px 10px 0px 10px;
+}
+
+.suit{
+    width: 50px;
+    display: inline;
+    vertical-align: middle;
+}
+
+#rule{
+    font-size: 30px;
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+button{
+    width: 140px;
+    height: 60px;
+    font-size: 20px;
+    font-family: "serious2b", sans-serif;
+    border: 5px solid white;
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+}
+
+button:hover{
+    background-color: dimgray;
+    cursor: pointer;
+}

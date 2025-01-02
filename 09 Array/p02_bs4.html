@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BS4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+
+<style>
+    .jumbotron {
+        background-color: antiquewhite;
+    }
+</style>
+
+<script>
+//Hello！你好呀！
+//歡迎光臨！
+//又看到你了，最近好嗎？
+//張開雙臂歡迎你！
+//來個抱抱吧！
+    let i = -1;
+    let msg = new Array("春", "夏", "秋", "冬");
+    let pname = new Array(4);
+    pname[0] = "./images/spring.jpg";
+    pname[1] = "./images/summer.jpg";
+    pname[2] = "./images/autumn.jpg";
+    pname[3] = "./images/winter.jpg";
+    let bgc = new Array("#C4FF6E", "#F4EC8D", "#EF9B33", "#ADC8D9");
+    function go() {
+        // let i = Math.floor(Math.random()*5);
+        i = i + 1;
+        if (i >= 4) { i = 0; }
+        console.log(i);
+        document.getElementById("here").innerHTML = msg[i];
+        document.getElementById("pic").src = pname[i];
+        document.getElementById("baner").style.backgroundColor = bgc[i];
+    }
+    setInterval(go, 3000);
+</script>
+
+<body onload="go()">
+    <div id="baner" class="jumbotron text-center" >
+        <h1 id="here">BootStrap 4</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nisi inventore nemo nostrum quaerat illo placeat blanditiis, natus architecto dolorum.</p>
+    </div>
+    <div class="container">
+        <p align="center">
+            <img id="pic" src="./images/spring.jpg" class="img-thumbnail" width="400">
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus tempora ipsam, perspiciatis hic optio assumenda, expedita dicta consectetur distinctio perferendis, nihil recusandae ut qui a soluta amet sit quisquam voluptas. Ipsa quos adipisci praesentium porro et aut dolorem est debitis repellat, enim optio cupiditate incidunt voluptate eius autem commodi maiores odit animi suscipit. Accusantium rerum molestiae eius at commodi nihil.
+        </p>
+    </div>
+
+</body>
+
+</html>
+
+</html>

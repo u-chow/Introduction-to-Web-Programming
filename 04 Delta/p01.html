@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+
+<script>
+    function go()
+    {
+        let a, b, c;
+        let p;
+        let s;
+        a = document.getElementById("a").value;
+        b = document.getElementById("b").value;
+        c = document.getElementById("c").value;
+        a = parseFloat(a);
+        b = parseFloat(b);
+        c = parseFloat(c);
+        p = (a + b + c) / 2;
+        s = Math.sqrt(p*(p-a)*(p-b)*(p-c));
+        t = s.toString();
+        // window.alert(t);
+        document.getElementById("here").innerHTML = t;
+    }
+</script>
+
+<body>
+    <h1>Delta Area</h1>
+    <hr>
+    <p>
+        a: <input id="a" type="text" value="0"><br>
+        b: <input id="b" type="text" value="0"><br>
+        c: <input id="c" type="text" value="0"><br><br>
+        <input type="button" value="計算" onclick="go()">
+    </p>
+    
+    <h1>AREA =
+        <span id="here" style="color:chocolate">???</span>
+    </h1>
+
+</body>
+
+</html>

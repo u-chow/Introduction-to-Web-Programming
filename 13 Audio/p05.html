@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BS4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+
+<style>
+    .jumbotron {
+        background-color:coral;
+        color:white;
+    }
+    #box {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        background-image: url(./images/bg.jpg);
+        background-size: cover;
+        margin: 0px auto;
+    }
+    .monster {
+        position: absolute;
+        visibility: hidden;
+    }
+</style>
+
+<script>
+    let n = 12;
+    let hn = 0;
+    let sec = 20;
+    let monsters = new Object();
+    function initiate() {
+        let name;
+        let x, y, x0, y0;
+        for (let i = 1; i <= n; i++) {
+            name = "m" + i.toString();
+            x = Math.floor(Math.random()*450);
+            y = Math.floor(Math.random()*450);
+            x0 = Math.floor(Math.random()*450);
+            y0 = Math.floor(Math.random()*450);
+            monsters[name] = { x:x, y:y, x0:x0, y0:y0 }
+            document.getElementById(name).style.left = x.toString() + "px";
+            document.getElementById(name).style.top  = y.toString() + "px";
+            document.getElementById(name).style.visibility = "visible";
+        }
+    }
+    function change() {
+        let x, y, x0, y0;
+        for (let i = 1; i <= n; i++) {
+            name = "m" + i.toString();
+            x = monsters[name].x;
+            y = monsters[name].y;
+            x0 = monsters[name].x0;
+            y0 = monsters[name].y0;
+            x = x + (x0-x)*0.05 + Math.floor(Math.random()*5)-2;
+            y = y + (y0-y)*0.05 + Math.floor(Math.random()*5)-2;
+            monsters[name].x = x;
+            monsters[name].y = y;
+            document.getElementById(name).style.left = x.toString() + "px";
+            document.getElementById(name).style.top  = y.toString() + "px";
+        }
+    }
+    function jump() {
+        let name;
+        let x0, y0;
+        for (let i = 1; i <= n; i++) {
+            name = "m" + i.toString();
+            x0 = Math.floor(Math.random()*450);
+            y0 = Math.floor(Math.random()*450);
+            monsters[name].x0 = x0;
+            monsters[name].y0 = y0;
+        }
+    }
+    function countdown() {
+        sec = sec - 1;
+        document.getElementById("sec").innerHTML = sec.toString();
+        if (sec <= 0) {
+            location.href = "fail.html";
+        }
+    }
+    let starting = false;
+    function start() {
+        if (starting == false) {
+            starting = true;
+            initiate();
+            setInterval(change, 40);
+            setInterval(jump, 2000);
+            setInterval(countdown, 1000);
+        }
+    }
+    function go() {
+        location.href = "win.html";
+    }
+    function hit(obj) {
+        let boom = new Audio("./media/boom.mp3");
+        boom.play();
+        obj.style.visibility = "hidden";
+        hn = hn + 1;
+        document.getElementById("hit").innerHTML = hn.toString();
+        if (hn == 12) {
+            // audio.play();
+            setTimeout(go, 10000);
+        }
+    }
+</script>
+
+<body>
+    <div class="jumbotron text-center" >
+        <h1>Monster Game</h1>
+    </div>
+    <div class="container">
+        <h3 align="center">Hit = <span id="hit" style="color:red">0</span>, Timer = <span id="sec" style="color:blue">20</span></h3>
+        <hr>
+        <div id="box">
+            <script>
+                for (let i = 1; i <= n; i++) {
+                    document.write('<img id="m' + i.toString() + '"  src="./images/m' + ((i-1)%6+1).toString() + '.png" class="monster" width="50px" onclick="hit(this)">');
+                }
+            </script>
+        </div>
+        <hr>
+        <p align="center">
+            <input type="button" value="START" class="btn btn-warning" onclick="start()">
+            <input type="button" value="STOP" class="btn btn-warning">
+            <input type="button" value="HOME" class="btn btn-danger">
+        </p>
+        
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+
+<script>
+    function show() {
+        let ck = document.cookie;
+        console.log(ck);
+        eval(ck);
+        console.log("a=", a);
+        console.log("b=", b);
+        console.log("c=", c);
+        console.log("x=", x);
+    }
+</script>
+
+<body>
+    <h1>P02</h1>
+    <hr>
+    <p>
+        <input type="button" value="Show" onclick="show()">
+    </p>
+</body>
+
+</html>

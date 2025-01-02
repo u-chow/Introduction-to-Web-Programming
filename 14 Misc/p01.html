@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+
+<script>
+    let a, b, c;
+    let x;
+    function go() {
+        document.cookie = "a=100;";
+        document.cookie = "b=200;";
+        document.cookie = "c=300;";
+        document.cookie = "x=" + document.getElementById("xxx").value + ";";
+        location.href = "p02.html";
+    }
+</script>
+
+<body>
+    <h1>P01</h1>
+    <hr>
+    <p>
+        <input id="xxx" type="text" value="0">
+        <input type="button" value="go P02" onclick="go()">
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BS4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+
+<style>
+    .jumbotron {
+        background-color: antiquewhite;
+    }
+    #abox {
+        margin: 0px auto;
+        width: 400px;
+        height: 300px;
+        /*background-color: antiquewhite;*/
+    }
+    #vbox {
+        position: relative;
+        margin: 0px auto;
+        width: 400px;
+        height: 550px;
+        /*background-color: antiquewhite;*/
+    }
+    #vbox video {
+        position: absolute;
+    }
+    #v1 {
+        left: 0px;
+        top: 100px;
+    }
+    #v2 {
+        left: 50px;
+        top: 200px;
+        opacity: 0.5;
+    }
+    #ubox {
+        margin: 0px auto;
+        width: 400px;
+        height: 400px;
+        /* background-color: antiquewhite; */
+    }
+</style>
+
+<body>
+    <div class="jumbotron text-center" >
+        <h1>Media Player</h1>
+    </div>
+    <div class="container">
+        <div id="abox">
+           <h3>Audio</h3>
+           <audio controls loop>
+               <source src="./media/bg0.mp3">
+           </audio>
+           <audio controls loop>
+               <source src="./media/bg1.mp3">
+           </audio>
+           <audio controls loop>
+               <source src="./media/bg2.mp3">
+           </audio>
+           <audio controls loop>
+               <source src="./media/bg3.mp3">
+           </audio>
+        </div>
+        <hr>
+        <div id="vbox">
+            <h3>Video</h3>
+            <video id="v1" controls width="400">
+                <source src="./media/video1.mp4">
+            </video>
+            <video id="v2" controls width="400">
+                <source src="./media/video2.mp4">
+            </video>
+        </div>
+        <hr>
+        <div id="ubox">
+            <h3>Youtube</h3>
+            <iframe width="417" height="235" src="https://www.youtube.com/embed/PD8AmSYIi5w" title="一起登島" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

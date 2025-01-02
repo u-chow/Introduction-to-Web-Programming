@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+
+<script>
+//Hello！你好呀！
+//歡迎光臨！
+//又看到你了，最近好嗎？
+//張開雙臂歡迎你！
+//來個抱抱吧！
+    let i = -1;
+    let msg = new Array(5);
+    msg[0] = "Hello！你好呀！";
+    msg[1] = "歡迎光臨！";
+    msg[2] = "又看到你了，最近好嗎？";
+    msg[3] = "張開雙臂歡迎你！";
+    msg[4] = "來個抱抱吧！";
+    function go() {
+        // let i = Math.floor(Math.random()*5);
+        i = i + 1;
+        if (i >= 5) { i = 0; }
+        console.log(i);
+        document.getElementById("here").innerHTML = msg[i];      
+    }
+    setInterval(go, 3000);
+</script>
+
+<body onload="go()">
+    <h1 id="here">???</h1>
+
+</body>
+
+</html>

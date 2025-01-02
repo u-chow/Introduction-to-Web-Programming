@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Math prodigy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+
+<style>
+    .jumbotron
+    {
+        background-color: antiquewhite;
+    }
+</style>
+
+<script>
+    let token;
+    point = 0;
+    answ = 0;
+    function start()
+    {
+        document.getElementById("start").disabled = true;
+        document.getElementById("sent").disabled = false;
+        n1 = Math.floor(Math.random() * 1000);
+        n2 = Math.floor(Math.random() * 1000);
+        sign = Math.floor(Math.random() * 3);
+        if(sign == 0)
+        {
+            answ = n1 + n2;
+            document.getElementById("ans").innerHTML = n1.toString()+' + '+n2.toString();
+        }
+        else if(sign == 1)
+        {
+            answ = n1 - n2;
+            document.getElementById("ans").innerHTML = n1.toString()+' - '+n2.toString();
+        }
+        else
+        {
+            answ = n1 * n2;
+            document.getElementById("ans").innerHTML = n1.toString()+' x '+n2.toString();
+        }
+    }
+    function answer()
+    {
+        var input = document.getElementById("input").value;
+        input = parseFloat(input);
+        if(input == answ)
+        {
+            point++;
+        }
+        else
+        {
+            point--;
+        }
+        document.getElementById("point").innerHTML = point;
+        document.getElementById("input").value = "";
+        start();
+    }
+    function reset()
+    {
+        point = 0;
+        document.getElementById("ans").innerHTML = "Math prodigy";
+        document.getElementById("point").innerHTML = point;
+        document.getElementById("start").disabled = false;
+        document.getElementById("sent").disabled = true;
+    }
+    function other()
+    {
+        window.open("middle3.html", "_blank");
+    }
+
+</script>
+
+<body>
+    <div class="jumbotron text-center" >
+        <h1 id="ans"><b>Math prodigy</b></h1>
+    </div>
+	<div class="container">
+        <h1>Math prodigy</h1>
+        <hr>
+        <p>
+            <input type="button" class="btn btn-primary" value="START" id="start" onclick="start()">
+            <input type="button" class="btn btn-primary" value="RESET" onclick="reset()">
+            <input type="button" class="btn btn-secondary" value="OTHER GAME" onclick="other()">
+        </p>
+        <hr>
+            <label for="input" >Answer: </label>
+            <input type="number" id="input">
+            <button type="submit" style="color:chocolate" onclick="answer()" id="sent" disabled>送出</button>
+        <hr>
+        <h1>Point: <span id="point">0</span></h1>
+	</div>
+</body>
+
+<footer style="position: absolute; bottom: 0; right: 0; background-color: antiquewhite; padding: 10px; text-align: right;">
+    <h2 style="color: chocolate">By Uchow</h2>
+</footer>
+
+</html>

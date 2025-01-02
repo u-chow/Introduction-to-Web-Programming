@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>P5</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
+</head>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color:honeydew;
+}
+canvas {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 360px;
+    height: 240px;
+}
+.jumbotron {
+    background-color: lightseagreen;
+    color: white;
+}
+</style>
+
+<script>
+    let dark = false;
+    function goNormal() {
+        dark = false;
+    }
+    function goDark() {
+        dark = true;
+    }
+</script>
+
+<script>
+    // Google 語音辨識模組
+    var say_something = "";
+    function speechRecognition() {
+        if (!("webkitSpeechRecognition" in window)) {
+            alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+        } else{
+            window._recognition = new webkitSpeechRecognition();
+            window._recognition.continuous = true;
+            window._recognition.interimResults = true;
+            window._recognition.lang = "cmn-Hant-TW";
+            window._recognition.onstart = function() {
+                window._recognition.status = true;
+                console.log("Start recognize...");
+            };
+            window._recognition.onend = function() {
+                console.log("Stop recognize");
+                if (window._recognition.status) 
+                    window._recognition.start();
+                }
+            };
+            window._recognition.onresult = function(event,result) {
+                result = {};
+                result.resultLength = event.results.length-1;
+                result.resultTranscript = event.results[result.resultLength][0].transcript;
+                say_something = "？？？";
+                if (event.results[result.resultLength].isFinal === false) {
+                    //console.log(result.resultTranscript);
+                    say_something = result.resultTranscript;
+                    extract_command(say_something);    
+                } else if (event.results[result.resultLength].isFinal === true) {
+                    //console.log("final");
+                    say_something = result.resultTranscript;
+                    extract_command(say_something);    
+                }
+                document.getElementById("msg").innerHTML = say_something;
+            };
+            window._recognition.start();
+        }
+        function extract_command(sentence) {
+            if (sentence.indexOf("陽光") !== -1) {
+                dark = false;
+            } else if (sentence.indexOf("黑暗") !== -1) {
+                dark = true;
+            } else {
+            }
+        }
+        speechRecognition();
+    // }
+    // 注意：
+    // 這是一個古怪的 JavaScript 程式設計技巧，
+    // 在語法上最後這裡原本應該有一個 } 作為結尾，但是卻不能加上，否則辨識不能持續進行，
+    // 其實是 Rucursive 呼叫 speechRecognition 函式
+</script>
+
+<script>
+    let img;
+    
+    function preload() {
+        img = loadImage("lotus_s.jpg");
+    }
+  
+    function setup() {
+        print(img.width, img.height);
+        createCanvas(360, 240);
+        img.resize(width, height);
+        // image(img, 0, 0);
+    }
+    
+    function draw() {
+        let ratio = img.height / img.width;
+        for (i = 1; i <= 10; i++) {
+            let w = random(6, 12);
+            let h = w * ratio;
+            let x = random(0, width-w);
+            let y = random(0, height-h);
+            c = img.get(x+w/2, y+h/2);
+            if (dark == true) {
+                c = color(c);
+                r = red(c);
+                g = green(c);
+                b = blue(c);
+                c = color(255-r, 255-g, 255-b);
+            }
+            noStroke();
+            fill(c);
+            ellipse(x+w/2, y+h/2, w, h);
+        }
+    }
+</script>
+
+<body>
+    <div class="jumbotron">
+        <h3 align="center">語音控制的 p5 Canvas</h3>
+    </div>
+    <div class="container">
+        <p id="msg" style="text-align:center">（指令：陽光 / 黑暗）</p>
+        <p style="text-align:center">
+            <input type="button" class="btn-warning" value="陽光普照" onclick="goNormal()">
+            <input type="button" class="btn-dark" value="黑暗降臨" onclick="goDark()">
+        </p>
+    </div>
+</body>
+
+</html>

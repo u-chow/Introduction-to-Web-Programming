@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+
+<body>
+    <h1>Google Speech</h1>
+    <hr>
+    <h3 id="txt">???</h3>
+
+</body>
+
+<script>
+    // Google 語音辨識模組
+    function speechRecognition() {
+        if (!("webkitSpeechRecognition" in window)) {
+            alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+        } else{
+            window._recognition = new webkitSpeechRecognition();
+            window._recognition.continuous = true;
+            window._recognition.interimResults = true;
+            window._recognition.lang = "cmn-Hant-TW";
+            window._recognition.onstart = function() {
+                window._recognition.status = true;
+                console.log("Start recognize...");
+            };
+            window._recognition.onend = function() {
+                console.log("Stop recognize");
+                if (window._recognition.status) 
+                    window._recognition.start();
+                }
+            };
+            window._recognition.onresult = function(event,result) {
+                result = {};
+                result.resultLength = event.results.length-1;
+                result.resultTranscript = event.results[result.resultLength][0].transcript;
+                if (event.results[result.resultLength].isFinal === false) {
+                    //console.log(result.resultTranscript);
+                    document.getElementById("txt").innerHTML = result.resultTranscript;
+                } else if (event.results[result.resultLength].isFinal === true) {
+                    //console.log("final");
+                    let txt = result.resultTranscript;
+                    document.getElementById("txt").innerHTML = txt;
+                    if (txt == "紅色") {
+                        document.body.style.backgroundColor = "red";
+                    }
+                }
+            };
+            window._recognition.start();
+        }
+        speechRecognition();
+    // }
+    // 注意：
+    // 這是一個古怪的 JavaScript 程式設計技巧，
+    // 在語法上最後這裡原本應該有一個 } 作為結尾，但是卻不能加上，否則辨識不能持續進行，
+    // 其實是 Rucursive 呼叫 speechRecognition 函式
+</script>
+
+
+
+</html>

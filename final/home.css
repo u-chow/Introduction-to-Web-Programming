@@ -1,0 +1,44 @@
+body{
+    text-align: center;
+    background-color: black;
+}
+
+.carddiv{
+    display: inline;
+    vertical-align: middle;
+}
+
+.card{
+    width: 100px;
+}
+
+#title{
+    font-size: 100px;
+    font-family: "serious2b", sans-serif;
+    padding-bottom: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+    margin: 150px 10px 0px 10px;
+}
+
+#start{
+    width: 400px;
+    border-radius: 20px;
+}
+
+button{
+    width: 220px;
+    height: 70px;
+    font-size: 25px;
+    font-family: "serious2b", sans-serif;
+    border: 5px solid white;
+    background-color: black;
+    color: white;
+    margin-bottom: 20px;
+}
+
+button:hover{
+    background-color: dimgray;
+    cursor: pointer;
+}

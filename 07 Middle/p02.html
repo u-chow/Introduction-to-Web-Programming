@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BS4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+
+<style>
+    .jumbotron {
+        background-color: antiquewhite;
+    }
+</style>
+
+<script>
+    let s = 10;
+    let token;
+    function count() {
+        s = s - 1;
+        document.getElementById("counter").innerHTML = s.toString();
+        if (s == 0) {
+            clearInterval(token);
+            document.getElementById("bomb").src = "boom.png";
+        }
+    }
+    token = setInterval(count, 1000);
+    let ans;
+    function start() {
+        ans = Math.floor(Math.random() * 11) + 2;
+        //console.log(ans);
+        document.getElementById("ans").innerHTML = ans.toString();
+    }
+    function draw() {
+        let pt1 = Math.floor(Math.random() * 6) + 1;
+        let pt2 = Math.floor(Math.random() * 6) + 1;
+        //console.log(pt1);
+        //console.log(pt2);
+        document.getElementById("pt1").innerHTML = pt1.toString();
+        document.getElementById("pt2").innerHTML = pt2.toString();
+        if (pt1+pt2 == ans) {
+            clearInterval(token);
+            document.getElementById("btn").disabled = true;
+        }
+    }
+
+</script>
+
+<body>
+    <div class="jumbotron text-center" >
+        <h1 id="ans">Hello JS</h1>
+    </div>
+	<div class="container">
+        <h1>JS Game, counter = <span id="counter">10</span></h1>
+        <hr>
+        <p>
+            <input type="button" class="btn btn-primary" value="START" onclick="start()">
+        </p>
+        <hr>
+        <h1><span id="pt1">???</span> : <span id="pt2">???</span></h1>
+        <hr>
+        <p>
+            <input id="btn" type="button" class="btn btn-success" value="Draw" onclick="draw()">
+        </p>
+        <hr>
+        <img id="bomb" src="bomb.png" width="200">
+	</div>
+
+</body>
+
+</html>
